@@ -234,7 +234,7 @@ class Connection(object):
         return self._db.begin()
 
     def trans_execute(self, cursor, query, *parameters, **kwparameters):
-        return self._execute(cursor, query, *parameters, **kwparameters)
+        return self._execute(cursor, query, parameters, kwparameters)
 
     def trans_cursor(self):
         return self._cursor()
