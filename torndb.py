@@ -119,6 +119,7 @@ class Connection(object):
         self.close()
         self._db = MySQLdb.connect(**self._db_args)
         self._db.autocommit(True)
+        logging.info('---------reconnected---------')
 
     def iter(self, query, *parameters, **kwparameters):
         """Returns an iterator for the given query and parameters."""
