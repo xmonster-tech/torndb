@@ -227,6 +227,18 @@ class Connection(object):
         finally:
             cursor.close()
 
+    def cursor(self):
+        return self._cursor()
+
+    def begin(self):
+        self._db.begin()
+
+    def commit(self):
+        self._db.commit()
+
+    def rollback(self):
+        self._db.rollback()
+
     update = execute_rowcount
     updatemany = executemany_rowcount
 
