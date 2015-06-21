@@ -233,8 +233,8 @@ class Connection(object):
         self._ensure_connected()
         return self._db.begin()
 
-    def trans_execute(self, cursor, query, parameters, kwparameters):
-        return self._execute(cursor, query, parameters, kwparameters)
+    def trans_execute(self, cursor, query, *parameters, **kwparameters):
+        return self._execute(cursor, query, *parameters, **kwparameters)
 
     def trans_cursor(self):
         return self._cursor()
@@ -245,7 +245,7 @@ class Connection(object):
     def trans_rollback(self):
         return self._db.rollback()
 
-        
+
     update = execute_rowcount
     updatemany = executemany_rowcount
 
