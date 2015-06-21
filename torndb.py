@@ -228,19 +228,24 @@ class Connection(object):
         finally:
             cursor.close()
 
-    def cursor(self):
+    #enhance torndb with transcation ability
+    def trans_begin(self):
+        self._ensure_connected()
+        return self._db.begin()
+
+    def trans_execute(self, cursor, query, parameters, kwparameters):
+        return self._execute(cursor, query, parameters, kwparameters)
+
+    def trans_cursor(self):
         return self._cursor()
 
-    def begin(self):
-        self._ensure_connected()
-        self._db.begin()
+    def trans_commit(self):
+        return self._db.commit()
 
-    def commit(self):
-        self._db.commit()
+    def trans_rollback(self):
+        return self._db.rollback()
 
-    def rollback(self):
-        self._db.rollback()
-
+        
     update = execute_rowcount
     updatemany = executemany_rowcount
 
