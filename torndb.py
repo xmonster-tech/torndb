@@ -199,9 +199,9 @@ class Connection(object):
             return cursor.lastrowid
         finally:
             cursor.close()
-            
+
     def transaction(self, query, *parameters, **kwparameters):
-        self._db.begin()
+        self.begin()
         cursor = self._cursor()
         status = True
         try:
@@ -232,6 +232,7 @@ class Connection(object):
         return self._cursor()
 
     def begin(self):
+        self._ensure_connected()
         self._db.begin()
 
     def commit(self):
