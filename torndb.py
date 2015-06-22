@@ -201,7 +201,7 @@ class Connection(object):
             cursor.close()
 
     def transaction(self, query, *parameters, **kwparameters):
-        self.begin()
+        self.trans_begin()
         cursor = self._cursor()
         status = True
         try:
