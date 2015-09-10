@@ -119,7 +119,7 @@ class Connection(object):
         self.close()
         self._db = MySQLdb.connect(**self._db_args)
         self._db.autocommit(True)
-        self._db.execute("SET NAMES utf8mb4")
+        self.execute("SET NAMES utf8mb4")
         logging.info('---------reconnected---------')
 
     def iter(self, query, *parameters, **kwparameters):
