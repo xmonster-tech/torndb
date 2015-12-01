@@ -250,6 +250,8 @@ class Connection(object):
     def trans_rollback(self):
         return self._db.rollback()
 
+    def set_autocommit(self, enable):
+        self._db.autocommit(enable)
 
     update = execute_rowcount
     updatemany = executemany_rowcount
